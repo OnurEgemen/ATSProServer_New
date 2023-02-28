@@ -11,4 +11,6 @@ public interface IMainRoleService
 
     Task CreateRangeAsync(List<MainRole> newMainRoles, CancellationToken cancellationToken);
 
+    IQueryable<MainRole> GetAll();
+
 }

@@ -1,6 +1,7 @@
 ﻿using ATSProServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateMainRole;
 using ATSProServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateRole;
 using ATSProServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateStaticMainRoles;
+using ATSProServer.Application.Features.AppFeatures.MainRoleFeatures.Queries.GetAllMainRole;
 using ATSProServer.Presentation.Abstraction;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,14 @@ public sealed class MainRolesController : ApiController
         CancellationToken cancellationToken)
     {
         CreateStaticMainRolesResponse response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+
+    }
+    
+    [HttpPost("[action]")]
+    public async Task<IActionResult> GetAllMainRole(GetAllMainRoleQuery request)
+    {
+        GetAllMainRoleQueryResponse response = await _mediator.Send(request);
         return Ok(response);
 
     }

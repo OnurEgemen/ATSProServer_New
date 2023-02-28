@@ -5,12 +5,15 @@ namespace ATSProServer.Domain.AppEntities
 {
     public sealed class MainRole : Entity
     {
+        public MainRole()
+        {
 
-        public MainRole(string id, string title, bool ısRoleCreatedByAdmin = false, 
+        }
+        public MainRole(string id, string title, bool isRoleCreatedByAdmin = false, 
             string firmId = null) : base(id)
         {
             Title = title;
-            IsRoleCreatedByAdmin = ısRoleCreatedByAdmin;
+            IsRoleCreatedByAdmin = isRoleCreatedByAdmin;
             FirmId = firmId;
         }
 

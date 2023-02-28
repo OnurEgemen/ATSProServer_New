@@ -10,11 +10,11 @@ public sealed class MainRoleService : IMainRoleService
 {
     private readonly IMainRoleCommandRepository _mainRoleCommandRepository;
     private readonly IMainRoleQueryRepository _mainRoleQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IAppUnitOfWork _unitOfWork;
 
     public MainRoleService(IMainRoleCommandRepository mainRoleCommandRepository,
         IMainRoleQueryRepository mainRoleQueryRepository,
-        IUnitOfWork unitOfWork)
+        IAppUnitOfWork unitOfWork)
     {
         _mainRoleCommandRepository = mainRoleCommandRepository;
         _mainRoleQueryRepository = mainRoleQueryRepository;
@@ -33,6 +33,11 @@ public sealed class MainRoleService : IMainRoleService
     {
         await _mainRoleCommandRepository.AddRangeAsync(newMainRoles,cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public IQueryable<MainRole> GetAll()
+    {
+        return _mainRoleQueryRepository.GetAll();
     }
 
     public async Task<MainRole> GetByTitleAndFirmId(string title, string firmId,

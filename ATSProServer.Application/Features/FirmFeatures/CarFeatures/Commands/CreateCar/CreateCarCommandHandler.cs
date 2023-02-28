@@ -16,7 +16,7 @@ namespace ATSProServer.Application.Features.FirmFeatures.CarFeatures.Commands.Cr
         public async Task<CreateCarCommandResponse> Handle(CreateCarCommand request, 
             CancellationToken cancellationToken)
         {
-            Car car = await _carService.GetByCarId(request.CarId);
+            Car car = await _carService.GetByCarId(request.CarId, cancellationToken);
             if (car != null) throw new Exception("Bu araç daha önce tanımlanmış!");
 
             await _carService.CreateCarAsync(request, cancellationToken);
