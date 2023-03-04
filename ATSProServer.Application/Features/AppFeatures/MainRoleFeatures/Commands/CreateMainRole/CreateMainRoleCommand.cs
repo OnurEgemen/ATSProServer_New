@@ -6,6 +6,5 @@ namespace ATSProServer.Application.Features.AppFeatures.MainRoleFeatures.Command
 
 public sealed record CreateMainRoleCommand(
     string Title,
-    bool IsCreatedByAdmin = false,
     string FirmId = null) : ICommand<CreateMainRoleResponse>;
 

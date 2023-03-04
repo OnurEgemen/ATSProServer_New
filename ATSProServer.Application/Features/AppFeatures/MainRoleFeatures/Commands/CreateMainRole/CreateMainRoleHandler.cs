@@ -24,7 +24,7 @@ public class CreateMainRoleHandler : ICommandHandler<CreateMainRoleCommand, Crea
         MainRole mainRole = new(
             Guid.NewGuid().ToString(),
             request.Title,
-            request.IsCreatedByAdmin,
+            request.FirmId != null ? false : true,
             request.FirmId);
 
         await _mainRoleService.CreateAsync(mainRole, cancellationToken);

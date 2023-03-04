@@ -40,12 +40,31 @@ public sealed class MainRoleService : IMainRoleService
         return _mainRoleQueryRepository.GetAll();
     }
 
+    public async Task<MainRole> GetByIdAsync(string id)
+    {
+        return await _mainRoleQueryRepository.GetById(id);
+    }
+
+    
+
     public async Task<MainRole> GetByTitleAndFirmId(string title, string firmId,
         CancellationToken cancellationToken)
     {
        // if (firmId == null) return await _mainRoleQueryRepository.GetFirstByExpression(
-       //     x => x.Title == title);
+       //     x => x.Title == title, cancellationToken,false);
         return await _mainRoleQueryRepository.GetFirstByExpression(x=>x.Title == title &&
         x.FirmId == firmId, cancellationToken,false);
+    }
+
+    public async Task RemoveByIdAsync(string id)
+    {
+        await _mainRoleCommandRepository.RemoveById(id);
+        await _unitOfWork.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(MainRole mainRole)
+    {
+        _mainRoleCommandRepository.Update(mainRole);
+        await _unitOfWork.SaveChangesAsync();
     }
 }

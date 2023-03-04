@@ -13,4 +13,9 @@ public interface IMainRoleService
 
     IQueryable<MainRole> GetAll();
 
+    Task RemoveByIdAsync(string id);
+
+    Task<MainRole> GetByIdAsync(string id);
+
+    Task UpdateAsync(MainRole mainRole);
 }

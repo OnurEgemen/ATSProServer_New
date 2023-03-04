@@ -35,6 +35,11 @@ namespace ATSProServer.Persistance.Services.AppServices
             await _appUnitOfWork.SaveChangesAsync(cancellationToken);
         }
 
+        public IQueryable<Firm> GetAll()
+        {
+            return _firmQueryRepository.GetAll();
+        }
+
         public async Task<Firm?> GetFirmByName(string name)
         {
             return await _firmQueryRepository.GetFirstByExpression(x=>x.FirmName== name);

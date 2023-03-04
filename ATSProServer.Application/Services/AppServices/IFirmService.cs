@@ -8,5 +8,7 @@ namespace ATSProServer.Application.Service.AppServices
         Task CreateFirm(CreateFirmCommand request, CancellationToken cancellationToken);
         Task MigrateFirmDatabases();
         Task <Firm?> GetFirmByName(string name);
+
+        IQueryable<Firm>GetAll();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ATSProServer.Application.Features.AppFeatures.FirmFeatures.Commands.CreateFirm;
 using ATSProServer.Application.Features.AppFeatures.FirmFeatures.Commands.MigrateFirmDatabase;
+using ATSProServer.Application.Features.AppFeatures.FirmFeatures.Queries.GetAllFirms;
 using ATSProServer.Presentation.Abstraction;
 using MediatR;
 
@@ -30,5 +31,15 @@ namespace ATSProServer.Presentation.Controller
             MigrateFirmDatabasesCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllFirm()
+        {
+            GetAllFirmQuery request = new();
+            GetAllFirmQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
+        }
+
+
     }
 }

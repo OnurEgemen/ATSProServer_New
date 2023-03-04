@@ -24,7 +24,7 @@ public sealed class CreateStaticMainRolesHandler : ICommandHandler<CreateStaticM
         {
             MainRole checkMainRole = await _mainRoleService.GetByTitleAndFirmId(mainRole.Title,
                 mainRole.FirmId, cancellationToken);
-            if(checkMainRole != null) newMainRoles.Add(mainRole);
+            if(checkMainRole == null) newMainRoles.Add(mainRole);
 
         }
 
